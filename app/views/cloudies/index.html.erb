@@ -1,0 +1,5 @@
+<div class="contents row">
+  <% @cloudies.each do |cloudy| %>
+  <%= render partial: "cloudy", locals: { cloudy: cloudy } %>
+  <% end %>
+</div>
