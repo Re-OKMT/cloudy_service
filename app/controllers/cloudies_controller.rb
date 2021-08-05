@@ -1,7 +1,7 @@
 class CloudiesController < ApplicationController
   #before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_cloudy, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, except: [:index, :show,]
+  before_action :set_cloudy, only: [:edit]
+  before_action :move_to_index, except: [:index]
 
 
   def index
@@ -29,12 +29,11 @@ class CloudiesController < ApplicationController
     cloudy.update(cloudy_params)
   end
 
-  def show
-  end
+
 
   private
   def cloudy_params
-    params.require(:cloudy).permit(:name,:image, :text).merge(id: current_user.id)
+    params.require(:cloudy).permit(:text,:image).merge(id: current_user.id)
   end
 
   def set_cloudy
