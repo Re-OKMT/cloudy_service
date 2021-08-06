@@ -18,7 +18,8 @@ class CloudiesController < ApplicationController
 
   def destroy
     cloudy = Cloudy.find(params[:id])
-    cloudy.destroy
+    @cloudy.destroy
+    redirect_to root_path
   end
 
   def edit
