@@ -1,6 +1,7 @@
+
     <div class="content_post" style="background-image: url(<%= cloudy.image %>);">
-      <div class="more">
-        <span><%= image_tag 'arrow_top.png' %></span>
+      <div class="card">
+        <span><%= link_to image_tag(cloudy.image, class: :card__img ),cloudy_path(cloudy) %></span>
         <ul class="more_list">
           <li>
             <%= link_to '詳細', cloudy_path(cloudy.id), method: :get %>
@@ -18,7 +19,8 @@
       <p><%= cloudy.text %></p>
       <span class="name">
         <a href="/users/<%= cloudy.user.id %>">
-          <span>投稿者</span><%= cloudy.user.name %>
+          <span>投稿者</span><%= cloudy.user.nickname %>
         </a>
       </span>
+     </div> 
     </div>

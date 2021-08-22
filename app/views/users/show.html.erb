@@ -1,6 +1,8 @@
 <div class="contents row">
-  <p><%= @name %>さんの投稿一覧</p>
+  <p><%= @nickname %>さんの投稿一覧</p>
   <% @cloudies.each do |cloudy| %>
-    <%= render partial: "cloudies/cloudy", locals: { cloudy: cloudy } %>
+    <div class="content_post" style="background-image: url(<%= cloudy.image %>);">
+      <p><%= cloudy.text %></p>
+    </div>
   <% end %>
 </div>

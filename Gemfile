@@ -61,8 +61,12 @@ gem 'bootstrap', '~> 5.0.0.beta1'
 
 gem 'jquery-rails'
 
-gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
 
 gem 'gmaps4rails'
 
+gem 'image_processing', '~> 1.2'
+
+gem 'active_hash'
+
+gem 'geocoder'
