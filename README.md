@@ -4,18 +4,29 @@
 
 | Column              | Type    | Options                  |
 | ------------------- | ------- | ------------------------ |
+| id                  | string  | null: false              |
 | name                | string  | null: false              |
 | email               | string  | null: false, unique: true|
 | encrypted_password  | string  | null: false              |
 
 
 
-### items テーブル
+### cloudies テーブル
 
 | Column                | Type             | Options                        |
 | ----------------------| ---------------- | ------------------------------ |
 | user                  | references       | null: false, foreign_key: true |
 | image                 | references       | null: false, foreign_key: true |
+
+
+### likes テーブル
+
+| Column                | Type             | Options                        |
+| ----------------------| ---------------- | ------------------------------ |
+| id                    | references       | null: false                    |
+| user_id               | references       | null: false, foreign_key: true |
+| image                 | references       | null: false, foreign_key: true |
+
 
 アプリケーション名: Cloudy Service	
 アプリケーション概要: GPS機能を用いて雲の画像を撮影し投稿することで地上からの雲の様子を観察できる

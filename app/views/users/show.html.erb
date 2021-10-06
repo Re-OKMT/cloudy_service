@@ -1,4 +1,16 @@
-<div class="contents row">
+ 
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @nickname %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= current_user.email %></h6>
+          <%= link_to 'ユーザー編集', edit_user_path %>
+        </div>
+      </div>
+    </div>
+
   <p><%= @nickname %>さんの投稿一覧</p>
   <% @cloudies.each do |cloudy| %>
     <div class="content_post" style="background-image: url(<%= cloudy.image %>);">

@@ -1,9 +1,12 @@
-    <%= form_with model: @cloudy, local: true do |f| %>
+  <%= form_with model: @cloudy, local: true do |f| %>
 
    <div class="field">
      <%= f.label :image, "投稿画像" %>
       <%= f.file_field :image %>
    </div>
       <%#= form.text_area :text, placeholder: "text", rows: "10" %>
-      <%= f.submit "SEND" %>
-    <% end %>
+
+  <div>
+  <%= f.submit "SEND" %>
+  </div>
+  <% end %>

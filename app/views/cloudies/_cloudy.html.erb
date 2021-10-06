@@ -1,20 +1,26 @@
 
-    <div class="content_post" style="background-image: url(<%= cloudy.image %>);">
-      <div class="card">
-        <span><%= link_to image_tag(cloudy.image, class: :card__img ),cloudy_path(cloudy) %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '詳細', cloudy_path(cloudy.id), method: :get %>
-          </li>
+ <div class="container mt-5">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="content_post" style="background-image: url(<%= cloudy.image %>);">
+        <div class="more">
+          <span><%= link_to image_tag(cloudy.image, class: :card__img ),cloudy_path(cloudy) %></span>
+
+        
+        <div class="btn-group-vertical">
+          <button type="button" class="btn btn-outline-primary">
+           <%= link_to '詳細', cloudy_path(cloudy.id), method: :get %>
+           </button>
           <% if user_signed_in? && current_user.id == cloudy.user_id %>
-          <li>
+         <button type="button" class="btn btn-outline-primary"> 
             <%= link_to '編集', edit_cloudy_path(cloudy.id), method: :get %>
-          </li>
-          <li>
+         </button>
+         <button type="button" class="btn btn-outline-primary"> 
             <%= link_to '削除', cloudy_path(cloudy.id), method: :delete %>
-          </li>
+         </button>
           <% end %>
-        </ul>
+        </div>
+       
       </div>
       <p><%= cloudy.text %></p>
       <span class="name">
@@ -22,5 +28,24 @@
           <span>投稿者</span><%= cloudy.user.nickname %>
         </a>
       </span>
-     </div> 
+
+       <tbody>
+          <% @cloudies.each do |cloudy| %>
+            <td>
+                <% if current_user.already_liked?(cloudy) %>
+                  <%= link_to cloudy_like_path(cloudy), method: :delete do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                  <%= cloudy.likes.count %>
+                <% else %>
+                  <%= link_to cloudy_likes_path(cloudy), method: :post do %>
+                    <i class="far fa-heart"></i>
+                  <% end %>
+                  <%= cloudy.likes.count %>
+                <% end %>
+            </td>
+          <% end %>
+        </tbody>
     </div>
+  </div> 
+ </div>  
