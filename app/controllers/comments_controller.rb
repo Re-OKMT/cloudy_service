@@ -1,8 +1,14 @@
 class CommentsController < ApplicationController
 
   def create
-    comment = Comment.create(comment_params)
-    redirect_to "/cloudies/#{comment.cloudy.id}"  
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      redirect_to cloudy_path(@comment.cloudy)
+    else
+    @cloudy = @comment.cloudy
+    @comments = @cloudy.comments
+    render "cloudies/show"
+    end
   end
 
   private

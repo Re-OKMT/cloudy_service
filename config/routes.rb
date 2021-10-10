@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   resource :user, except: [:new, :create, :destroy]
   resources :cloudies do
-    resources :likes, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resource :likes, only: [:create, :destroy]
+    resource :comments, only: [:create, :destroy]
     collection do
       get 'search'
     end

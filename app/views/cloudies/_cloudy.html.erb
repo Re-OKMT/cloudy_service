@@ -1,7 +1,7 @@
 
  <div class="container mt-5">
   <div class="row">
-    <div class="col-10 mx-auto">
+    <div class="col-9 mx-auto">
       <div class="content_post" style="background-image: url(<%= cloudy.image %>);">
         <div class="more">
           <span><%= link_to image_tag(cloudy.image, class: :card__img ),cloudy_path(cloudy) %></span>
@@ -31,9 +31,10 @@
 
        <tbody>
           <% @cloudies.each do |cloudy| %>
-            <td>
+            <tr>
+              <td>             
                 <% if current_user.already_liked?(cloudy) %>
-                  <%= link_to cloudy_like_path(cloudy), method: :delete do %>
+                  <%= link_to cloudy_likes_path(cloudy), method: :delete do %>
                     <i class="fas fa-heart"></i>
                   <% end %>
                   <%= cloudy.likes.count %>
@@ -43,7 +44,8 @@
                   <% end %>
                   <%= cloudy.likes.count %>
                 <% end %>
-            </td>
+              </td>  
+            </tr>
           <% end %>
         </tbody>
     </div>

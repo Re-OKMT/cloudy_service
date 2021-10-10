@@ -7,7 +7,7 @@
             <small class="text-muted">更新日：<%= @cloudy.updated_at.strftime("%Y-%m-%d") %></small>
 
           <% if current_user.already_liked?(@cloudy) %>
-            <%= link_to cloudy_like_path(@cloudy), method: :delete do %>
+            <%= link_to cloudy_likes_path(@cloudy), method: :delete do %>
               <i class="fas fa-heart"></i>
             <% end %>
             <%= @cloudy.likes.count %>
@@ -17,46 +17,42 @@
             <% end %>
             <%= @cloudy.likes.count %>
           <% end %>
+          <% if @cloudy.user == current_user %>
+            <%= link_to '編集', edit_cloudy_path(@cloudy), class: "btn btn-success" %>
+            <%= link_to '削除', cloudy_path(@cloudy), method: :delete, class: "btn btn-danger" %>
+          <% end %>
 
         <div class="content_post" style="background-image: url(<%= @cloudy.image %>);">
           <% if user_signed_in? && current_user.id == @cloudy.user_id %>
-           <div class="more">
-              <%= image_tag @cloudy.image%>
-               <ul class="more_list">
-                <li>
-                 <%= link_to '編集', edit_cloudy_path(@cloudy), method: :get %>
-                </li>
-                <li>
-                 <%= link_to '削除', cloudy_path(@cloudy), method: :delete %>
-                </li>
-                </ul>
-            </div>
-           <% end %>
 
+           <% end %>
+          <%= image_tag @cloudy.image%>
           <p><%= @cloudy.text %></p>
            <span class="name">
             <a href="/users/<%= @cloudy.user.id %>">
            <span>投稿者</span><%= @cloudy.user.nickname %></span>
-  </div>
-  <div class="container">
-    <% if user_signed_in? %>
-      <%= form_with(model: [@cloudy, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
-        <%= form.submit "SEND" %>
-      <% end %>
-    <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
-      </strong>
-    <% end %>
-    <div class="comments">
-      <h4>＜コメント一覧＞</h4>
-      <% @comments.each do |comment| %>
-        <p>
+        </div>
+        <div class="container">
+          <% if user_signed_in? %>
+            <%= form_with(model: [@cloudy, @comment], local: true) do |form| %>
+            <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
+            <%= form.submit "SEND" %>
+          <% end %>
+          <% else %>
+            <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
+            </strong>
+          <% end %>
+         <div class="comments">
+          <h4>＜コメント一覧＞</h4>
+          <% @comments.each do |comment| %>
+          <p>
           <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
           <%= comment.text %>
-        </p>
-      <% end %>
-    </div>
-  </div>
+          </p>
+          <% end %>
+         </div>
+        </div>
 
+    </div>
+  </div>  
 </div>
