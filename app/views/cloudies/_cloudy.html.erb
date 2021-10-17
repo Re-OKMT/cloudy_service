@@ -37,9 +37,8 @@
                   <%= link_to cloudy_likes_path(cloudy), method: :delete do %>
                     <i class="fas fa-heart"></i>
                   <% end %>
-                  <%= cloudy.likes.count %>
                 <% else %>
-                  <%= link_to cloudy_likes_path(cloudy), method: :post do %>
+                  <%= link_to cloudy_likes_path(cloudy), method: :create do %>
                     <i class="far fa-heart"></i>
                   <% end %>
                   <%= cloudy.likes.count %>
