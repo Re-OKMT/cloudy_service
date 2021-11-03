@@ -76,7 +76,7 @@ class CloudiesController < ApplicationController
   
   private
   def cloudy_params
-    params.require(:cloudy).permit(:image, :text, :address).merge(user_id: current_user.id)
+    params.require(:cloudy).permit(:nickname, :image, :text, :address).merge(user_id: current_user.id)
   end
 
   def set_cloudy

@@ -1,20 +1,31 @@
- 
 <div class="container mt-5">
   <div class="row">
     <div class="col-7 mx-auto">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= @nickname %></h5>
+          <h5 class="card-title"><%= current_user.nickname %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= current_user.email %></h6>
           <%= link_to 'ユーザー編集', edit_user_path %>
         </div>
       </div>
     </div>
-
-  <p><%= @nickname %>さんの投稿一覧</p>
-  <% @cloudies.each do |cloudy| %>
-    <div class="content_post" style="background-image: url(<%= cloudy.image %>);">
-      <p><%= cloudy.text %></p>
+    <div class="col-9 mx-auto mt-5">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">画像</th>
+            <th scope="col">投稿者</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.cloudies.each do |cloudy| %>
+            <tr>
+              <td><%= link_to image_tag(cloudy.image, class: :card__img), cloudy_path(cloudy) %></td>
+              <td><%= cloudy.user.nickname %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-  <% end %>
+  </div>
 </div>

@@ -3,6 +3,14 @@ class Cloudy < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_many :comments, dependent: :destroy
+
+  def self.search(search)
+    if search != ""
+      Cloudy.where('text LIKE(?)', "%#{search}%")
+    else
+      Cloudy.all
+    end
+  end
   
   #以下現在地取得のため追加
 
